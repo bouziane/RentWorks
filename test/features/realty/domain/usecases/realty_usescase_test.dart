@@ -33,16 +33,16 @@ void main() {
         active: true);
 
     Realty testRealty = Realty(
-        id: "id",
-        name: " name",
-        description: "description",
-        location: "location",
-        price: 1,
-        available: true,
-        amenities: ["amenities"],
-        owner: "owner",
-        photos: ["photos"],
-        tenants: [testTenant]);
+      id: "id",
+      name: " name",
+      description: "description",
+      location: "location",
+      price: 1,
+      available: true,
+      amenities: ["amenities"],
+      owner: "owner",
+      photos: ["photos"],
+    );
 
     final testUpdatedRealty = Realty(
         amenities: [],
@@ -81,59 +81,6 @@ void main() {
           .thenAnswer((_) => Future.value(true));
       final result = await realtyUseCases.deleteRealty(testRealty.id);
       expect(result, true);
-    });
-
-    test('Add tenant to realty', () async {
-      // Realty(id: testRealtyId, tenants: []);
-      when(mockRealtyRepository.addTenantToRealty(testRealty.id, testTenant.id))
-          .thenAnswer((_) async => true);
-      when(mockRealtyRepository.getRealtyById(testRealty.id))
-          .thenAnswer((_) async => testRealty);
-      when(mockTenantRepository.getTenantById(testTenant.id))
-          .thenAnswer((_) async => testTenant);
-      //
-
-      bool result =
-          await realtyUseCases.addTenantToRealty(testRealty.id, testTenant.id);
-
-      expect(result, true);
-      expect(testRealty.tenants?.contains(testTenant), true);
-
-      verify(mockRealtyRepository.getRealtyById(testRealty.id)).called(1);
-      verify(mockTenantRepository.getTenantById(testTenant.id)).called(1);
-    });
-    test('Add tenant to non-existent realty', () async {
-      when(mockRealtyRepository.getRealtyById(testRealty.id))
-          .thenAnswer((_) async => testRealty);
-      when(mockTenantRepository.getTenantById(testTenant.id))
-          .thenAnswer((_) async => testTenant);
-      when(mockRealtyRepository.addTenantToRealty(testRealty.id, testTenant.id))
-          .thenAnswer((_) async => false);
-
-      bool result =
-          await realtyUseCases.addTenantToRealty(testRealty.id, testTenant.id);
-
-      expect(result, false);
-
-      verify(mockRealtyRepository.getRealtyById(testRealty.id)).called(1);
-      verify(mockTenantRepository.getTenantById(testTenant.id)).called(1);
-    });
-
-    test('Add non-existent tenant to realty', () async {
-      when(mockRealtyRepository.getRealtyById(testRealty.id))
-          .thenAnswer((_) async => testRealty);
-      when(mockRealtyRepository.addTenantToRealty(testRealty.id, testTenant.id))
-          .thenAnswer((_) async => false);
-      when(mockTenantRepository.getTenantById(testTenant.id))
-          .thenAnswer((_) async => testTenant);
-
-      bool result =
-          await realtyUseCases.addTenantToRealty(testRealty.id, testTenant.id);
-
-      expect(result, false);
-
-      verify(mockRealtyRepository.getRealtyById(testRealty.id)).called(1);
-      verify(mockTenantRepository.getTenantById(testTenant.id)).called(1);
     });
   });
 }

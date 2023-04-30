@@ -5,7 +5,7 @@ class Realty {
   final double price;
   final List<String> amenities;
   final List<String> photos;
-  final List<Tenant>? tenants;
+
   final String description;
   final String id;
   final String location;
@@ -22,6 +22,5 @@ class Realty {
     required this.owner,
     required this.photos,
     required this.price,
-    this.tenants,
   });
 }
