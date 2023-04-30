@@ -59,7 +59,7 @@ class MockTenantDataSource extends _i1.Mock implements _i3.TenantDataSource {
         returnValue: _i4.Future<bool>.value(false),
       ) as _i4.Future<bool>);
   @override
-  _i4.Future<_i2.Tenant> getTenantById(int? tenantId) => (super.noSuchMethod(
+  _i4.Future<_i2.Tenant> getTenantById(String? tenantId) => (super.noSuchMethod(
         Invocation.method(
           #getTenantById,
           [tenantId],

@@ -1,24 +1,27 @@
-class Realty {
-  final String id;
-  final String name;
-  final String description;
-  final String location;
-  final double price;
+import 'package:rentworks/features/tenant/domain/entities/tenant.dart';
 
-  bool available;
+class Realty {
+  final bool available;
+  final double price;
   final List<String> amenities;
-  final String owner;
   final List<String> photos;
+  final List<Tenant>? tenants;
+  final String description;
+  final String id;
+  final String location;
+  final String name;
+  final String owner;
 
   Realty({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.location,
-    required this.price,
-    required this.available,
     required this.amenities,
+    required this.available,
+    required this.description,
+    required this.id,
+    required this.location,
+    required this.name,
     required this.owner,
     required this.photos,
+    required this.price,
+    this.tenants,
   });
 }

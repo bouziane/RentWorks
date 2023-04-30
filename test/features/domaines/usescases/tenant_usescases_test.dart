@@ -17,7 +17,24 @@ void main() {
     mockTenantRepository = MockTenantRepository();
     tenantUseCase = TenantUseCase(mockTenantRepository);
   });
-  group('Tenant Service', () {
+  group('Tenant UseCases', () {
+    Tenant testTenant = Tenant(
+        id: "22",
+        name: "John Doe",
+        email: "johndoe@example.com",
+        phoneNumber: "phoneNumber",
+        occupation: "occupation",
+        active: true);
+
+    final updatedTenant = Tenant(
+      id: "22",
+      name: 'Jane Doe',
+      email: 'janedoe@example.com',
+      phoneNumber: '+1234567890',
+      active: true,
+      occupation: 'employee',
+    );
+
     test('Create Tenant', () async {
       final tenantParam = TenantParam(
         name: 'John Doe',
@@ -34,34 +51,18 @@ void main() {
     });
 
     test('Retrieve Tenant by ID', () async {
-      const tenantId = 123;
+      // const tenantId = "123";
 
-      when(mockTenantRepository.getTenantById(tenantId))
-          .thenAnswer((realInvocation) => Future.value(Tenant(
-                id: 123,
-                name: 'John Doe',
-                email: 'johndoe@example.com',
-                phoneNumber: '+1234567890',
-                active: true,
-                occupation: 'employee',
-              )));
-      final res = await tenantUseCase.retrieveTenantById(tenantId);
+      when(mockTenantRepository.getTenantById(testTenant.id))
+          .thenAnswer((realInvocation) => Future.value(testTenant));
+      final res = await tenantUseCase.retrieveTenantById(testTenant.id);
       expect(res.name, 'John Doe');
-      expect(res.id, 123);
+      expect(res.id, testTenant.id);
       expect(res.email, 'johndoe@example.com');
-      expect(res.phoneNumber, '+1234567890');
+      expect(res.phoneNumber, 'phoneNumber');
     });
 
     test('Update Tenant', () async {
-      final updatedTenant = Tenant(
-        id: 123,
-        name: 'Jane Doe',
-        email: 'janedoe@example.com',
-        phoneNumber: '+1234567890',
-        active: true,
-        occupation: 'employee',
-      );
-
       when(mockTenantRepository.updateTenant(updatedTenant))
           .thenAnswer((realInvocation) => Future.value(true));
       final res = await tenantUseCase.updateTenant(updatedTenant);
@@ -69,11 +70,9 @@ void main() {
     });
 
     test('Delete Tenant', () async {
-      const tenantId = '123';
-
-      when(mockTenantRepository.deleteTenant(tenantId))
+      when(mockTenantRepository.deleteTenant(testTenant.id))
           .thenAnswer((realInvocation) => Future.value(true));
-      final res = await tenantUseCase.deleteTenant(tenantId);
+      final res = await tenantUseCase.deleteTenant(testTenant.id);
       expect(res, true);
     });
   });

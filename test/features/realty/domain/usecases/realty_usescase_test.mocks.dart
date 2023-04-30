@@ -50,7 +50,7 @@ class MockRealtyRepository extends _i1.Mock implements _i3.RealtyRepository {
         returnValue: _i4.Future<bool>.value(false),
       ) as _i4.Future<bool>);
   @override
-  _i4.Future<_i2.Realty> getRealtyById(int? realtyId) => (super.noSuchMethod(
+  _i4.Future<_i2.Realty> getRealtyById(String? realtyId) => (super.noSuchMethod(
         Invocation.method(
           #getRealtyById,
           [realtyId],
@@ -77,6 +77,21 @@ class MockRealtyRepository extends _i1.Mock implements _i3.RealtyRepository {
         Invocation.method(
           #deleteRealty,
           [realtyId],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> addTenantToRealty(
+    String? realtyId,
+    String? tenantId,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addTenantToRealty,
+          [
+            realtyId,
+            tenantId,
+          ],
         ),
         returnValue: _i4.Future<bool>.value(false),
       ) as _i4.Future<bool>);

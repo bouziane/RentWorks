@@ -21,7 +21,7 @@ class TenantRepositoryImpl extends TenantRepository {
   }
 
   @override
-  Future<Tenant> getTenantById(int tenantId) {
+  Future<Tenant> getTenantById(String tenantId) {
     return tenantDataSource.getTenantById(tenantId);
   }
 

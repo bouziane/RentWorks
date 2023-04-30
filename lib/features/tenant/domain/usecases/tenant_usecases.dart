@@ -12,7 +12,7 @@ class TenantUseCase {
   }
 
   // Retrieve a tenant by their ID
-  Future<Tenant> retrieveTenantById(int tenantId) {
+  Future<Tenant> retrieveTenantById(String tenantId) {
     return tenantRepository.getTenantById(tenantId);
   }
 

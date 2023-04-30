@@ -10,9 +10,9 @@ class TenantDataSource {
     return true;
   }
 
-  Future<Tenant> getTenantById(int tenantId) async {
+  Future<Tenant> getTenantById(String tenantId) async {
     return Tenant(
-      id: 12,
+      id: "12",
       active: true,
       name: "name",
       email: "email",

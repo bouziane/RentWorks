@@ -28,7 +28,7 @@ void main() {
     );
 
     final tenant = Tenant(
-      id: 123,
+      id: "123",
       name: "name",
       email: "email",
       phoneNumber: "phoneNumber",
@@ -37,7 +37,7 @@ void main() {
     );
 
     final updatedTenant = Tenant(
-      id: 123,
+      id: "123",
       name: "nameUpdate",
       email: "emailUpdate",
       phoneNumber: "phoneNumberUpdate",
@@ -61,7 +61,7 @@ void main() {
     });
 
     test('Get Tenant by ID', () async {
-      const tenantId = 123;
+      const tenantId = "123";
       when(mockTenantDataSource.getTenantById(tenantId))
           .thenAnswer((_) => Future.value(tenant));
       final result = await tenantRepository.getTenantById(tenantId);

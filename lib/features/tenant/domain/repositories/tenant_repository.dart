@@ -5,5 +5,5 @@ abstract class TenantRepository {
   Future<bool> createTenant(TenantParam tenantParam);
   Future<bool> deleteTenant(String tenantId);
   Future<bool> updateTenant(Tenant updatedTenant);
-  Future<Tenant> getTenantById(int tenantId);
+  Future<Tenant> getTenantById(String tenantId);
 }
