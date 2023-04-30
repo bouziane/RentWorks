@@ -20,24 +20,30 @@ void main() {
 
   group('TenantRepositoryImpl', () {
     final tenantParam = TenantParam(
-        name: "name",
-        email: "email",
-        phoneNumber: "phoneNumber",
-        moveInDate: DateTime(2022));
+      name: "name",
+      email: "email",
+      phoneNumber: "phoneNumber",
+      active: true,
+      occupation: 'employee',
+    );
 
     final tenant = Tenant(
-        id: 123,
-        name: "name",
-        email: "email",
-        phoneNumber: "phoneNumber",
-        moveInDate: DateTime(2022));
+      id: 123,
+      name: "name",
+      email: "email",
+      phoneNumber: "phoneNumber",
+      active: true,
+      occupation: 'employee',
+    );
 
     final updatedTenant = Tenant(
-        id: 123,
-        name: "nameUpdate",
-        email: "emailUpdate",
-        phoneNumber: "phoneNumberUpdate",
-        moveInDate: DateTime(2023));
+      id: 123,
+      name: "nameUpdate",
+      email: "emailUpdate",
+      phoneNumber: "phoneNumberUpdate",
+      active: true,
+      occupation: 'employee',
+    );
 
     test('Create Tenant', () async {
       when(mockTenantDataSource.createTenant(tenantParam))

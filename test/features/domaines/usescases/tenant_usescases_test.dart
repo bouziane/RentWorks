@@ -23,7 +23,8 @@ void main() {
         name: 'John Doe',
         email: 'johndoe@example.com',
         phoneNumber: '+1234567890',
-        moveInDate: DateTime.now(),
+        active: true,
+        occupation: 'employee',
       );
 
       when(mockTenantRepository.createTenant(tenantParam))
@@ -41,7 +42,8 @@ void main() {
                 name: 'John Doe',
                 email: 'johndoe@example.com',
                 phoneNumber: '+1234567890',
-                moveInDate: DateTime.now(),
+                active: true,
+                occupation: 'employee',
               )));
       final res = await tenantUseCase.retrieveTenantById(tenantId);
       expect(res.name, 'John Doe');
@@ -56,7 +58,8 @@ void main() {
         name: 'Jane Doe',
         email: 'janedoe@example.com',
         phoneNumber: '+1234567890',
-        moveInDate: DateTime.now(),
+        active: true,
+        occupation: 'employee',
       );
 
       when(mockTenantRepository.updateTenant(updatedTenant))

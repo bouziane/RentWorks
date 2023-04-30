@@ -12,11 +12,13 @@ class TenantDataSource {
 
   Future<Tenant> getTenantById(int tenantId) async {
     return Tenant(
-        id: 12,
-        name: "name",
-        email: "email",
-        phoneNumber: "phoneNumber",
-        moveInDate: DateTime.now());
+      id: 12,
+      active: true,
+      name: "name",
+      email: "email",
+      phoneNumber: "phoneNumber",
+      occupation: "employee",
+    );
   }
 
   Future<bool> updateTenant(Tenant updatedTenant) async {
