@@ -1,5 +1,3 @@
-import 'package:rentworks/features/tenant/domain/entities/tenant.dart';
-
 class Realty {
   final bool available;
   final double price;

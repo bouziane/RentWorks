@@ -5,7 +5,6 @@ import 'package:rentworks/features/realty/domain/entities/realty.dart';
 import 'package:rentworks/features/realty/domain/repositories/realty_repository.dart';
 import 'package:rentworks/features/realty/domain/usecases/params/realty_param.dart';
 import 'package:rentworks/features/realty/domain/usecases/realty_usescase.dart';
-import 'package:rentworks/features/tenant/domain/entities/tenant.dart';
 
 import '../../../domaines/usescases/tenant_usescases_test.mocks.dart';
 import 'realty_usescase_test.mocks.dart';
@@ -24,13 +23,6 @@ void main() {
 
   group('RealtyUseCases', () {
     final testRealtyParam = RealtyParam();
-    Tenant testTenant = Tenant(
-        id: "22",
-        name: "name",
-        email: "email",
-        phoneNumber: "phoneNumber",
-        occupation: "occupation",
-        active: true);
 
     Realty testRealty = Realty(
       id: "id",
