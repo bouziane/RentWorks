@@ -7,12 +7,17 @@ import 'params/realty_param.dart';
 
 class RealtyUseCases {
   final RealtyRepository realtyRepository;
-  final TenantRepository tenantRepository;
-  RealtyUseCases(this.realtyRepository, this.tenantRepository);
+  // final TenantRepository tenantRepository;
+  RealtyUseCases(this.realtyRepository);
 
   // Create a new realty
   Future<bool> createRealty(RealtyParam param) {
     return realtyRepository.createRealty(param);
+  }
+
+  // Retrieve all realty
+  Future<List<Realty>> retrieveAllRealty() {
+    return realtyRepository.getAllRealty();
   }
 
   // Retrieve a realty by their ID
@@ -28,11 +33,5 @@ class RealtyUseCases {
   // Delete a Realty by their ID
   Future<bool> deleteRealty(String realtyId) {
     return realtyRepository.deleteRealty(realtyId);
-  }
-
-  Future<bool> addTenantToRealty(String realtyId, String tenantId) async {
-    Realty realty = await realtyRepository.getRealtyById(realtyId);
-    Tenant tenant = await tenantRepository.getTenantById(tenantId);
-    return realtyRepository.addTenantToRealty(realty.id, tenant.id);
   }
 }

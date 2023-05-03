@@ -6,19 +6,19 @@ import 'package:rentworks/features/realty/domain/repositories/realty_repository.
 import 'package:rentworks/features/realty/domain/usecases/params/realty_param.dart';
 import 'package:rentworks/features/realty/domain/usecases/realty_usescase.dart';
 
-import '../../../domaines/usescases/tenant_usescases_test.mocks.dart';
+import '../../../tenant/domain/usecases/tenant_usecases_test.mocks.dart';
 import 'realty_usescase_test.mocks.dart';
 
 @GenerateMocks([RealtyRepository])
 void main() {
   late MockRealtyRepository mockRealtyRepository;
-  late MockTenantRepository mockTenantRepository;
+  // late MockTenantRepository mockTenantRepository;
   late RealtyUseCases realtyUseCases;
 
   setUp(() {
     mockRealtyRepository = MockRealtyRepository();
-    mockTenantRepository = MockTenantRepository();
-    realtyUseCases = RealtyUseCases(mockRealtyRepository, mockTenantRepository);
+    // mockTenantRepository = MockTenantRepository();
+    realtyUseCases = RealtyUseCases(mockRealtyRepository);
   });
 
   group('RealtyUseCases', () {
@@ -52,6 +52,13 @@ void main() {
           .thenAnswer((_) => Future.value(true));
       final result = await realtyUseCases.createRealty(testRealtyParam);
       expect(result, true);
+    });
+
+    test('Retrieve All Realty ', () async {
+      when(mockRealtyRepository.getAllRealty())
+          .thenAnswer((_) => Future.value([testRealty]));
+      final result = await realtyUseCases.retrieveAllRealty();
+      expect(result, isInstanceOf<List<Realty>>());
     });
 
     test('Retrieve Realty by ID', () async {

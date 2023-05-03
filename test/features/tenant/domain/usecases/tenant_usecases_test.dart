@@ -6,7 +6,7 @@ import 'package:rentworks/features/tenant/domain/usecases/tenant_usecases.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'tenant_usescases_test.mocks.dart';
+import 'tenant_usecases_test.mocks.dart';
 
 @GenerateMocks([TenantRepository])
 void main() {

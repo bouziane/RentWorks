@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rentworks/core/screens/home_screen.dart';
+import 'package:rentworks/features/realty/presentation/screen/realty_screen.dart';
+import 'package:rentworks/features/tenant/presentation/screen/tenants_screen.dart';
 
 import '../features/login/presentation/screen/login_screen.dart';
 import 'screens/page_screen.dart';
@@ -13,10 +16,10 @@ class AppRouter {
   static const String LOADING_PAGE_ROUTE = "/loading";
   static const String LOGIN_PAGE_NAME = "login";
   static const String LOGIN_PAGE_ROUTE = "/login";
-  static const String PAGE1_NAME = "page1";
-  static const String PAGE1_ROUTE = "/page1";
-  static const String PAGE2_NAME = "page2";
-  static const String PAGE2_ROUTE = "/page2";
+  static const String TENANTS_NAME = "tenants";
+  static const String TENANTS_ROUTE = "/tenants";
+  static const String REALTY_NAME = "realty";
+  static const String REALTY_ROUTE = "/realty";
 
   static GoRouter createRouter() {
     final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -37,10 +40,10 @@ class AppRouter {
               context.go(AppRouter.HOME_PAGE_ROUTE);
               break;
             case 1:
-              context.go(AppRouter.PAGE1_ROUTE);
+              context.go(AppRouter.REALTY_ROUTE);
               break;
             case 2:
-              context.go(AppRouter.PAGE2_ROUTE);
+              context.go(AppRouter.TENANTS_ROUTE);
               break;
             default:
           }
@@ -48,17 +51,20 @@ class AppRouter {
       ),
       routes: [
         GoRoute(
-            name: HOME_PAGE_NAME,
-            path: HOME_PAGE_ROUTE,
-            builder: ((context, state) => PageScreen(text: 'Home'))),
+          name: HOME_PAGE_NAME,
+          path: HOME_PAGE_ROUTE,
+          pageBuilder: (context, state) => createFadeTrasition(HomeScreen()),
+        ),
         GoRoute(
-            name: PAGE1_NAME,
-            path: PAGE1_ROUTE,
-            builder: ((context, state) => PageScreen(text: "1"))),
+          name: TENANTS_NAME,
+          path: TENANTS_ROUTE,
+          pageBuilder: (context, state) => createFadeTrasition(TenantsScreen()),
+        ),
         GoRoute(
-            name: PAGE2_NAME,
-            path: PAGE2_ROUTE,
-            builder: ((context, state) => PageScreen(text: "2")))
+          name: REALTY_NAME,
+          path: REALTY_ROUTE,
+          pageBuilder: (context, state) => createFadeTrasition(RealtyScreen()),
+        )
       ],
     ));
     // Login
@@ -77,5 +83,15 @@ class AppRouter {
         navigatorKey: rootNavigatorKey,
         initialLocation: LOADING_PAGE_ROUTE,
         routes: routes);
+  }
+
+  static CustomTransitionPage<dynamic> createFadeTrasition(Widget child) {
+    return CustomTransitionPage(
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(
+              opacity: CurveTween(curve: Curves.easeOutQuad).animate(animation),
+              child: child),
+    );
   }
 }

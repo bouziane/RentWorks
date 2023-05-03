@@ -14,44 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("lsfkjslkj"),
-      ),
-      body: AdaptiveLayout(
-        internalAnimations: false,
-        primaryNavigation: SlotLayout(config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.mediumAndUp: SlotLayout.from(
-            key: const Key("menu"),
-            builder: (context) {
-              return AdaptiveScaffold.standardNavigationRail(
-                width: 90,
-                selectedIndex: 0,
-                labelType: NavigationRailLabelType.selected,
-                onDestinationSelected: (index) =>
-                    _tapOnNavigationDestination(context, index),
-                destinations: [
-                  NavigationRailDestination(
-                      icon: Icon(Icons.home), label: Text("accueil")),
-                  NavigationRailDestination(
-                      icon: Icon(Icons.house), label: Text("item 1")),
-                  NavigationRailDestination(
-                      icon: Icon(Icons.schema_outlined), label: Text("item 2")),
-                  // NavigationRailDestination(
-                  //     icon: Icons.holiday_village, label: Text("sds"))
-                ],
-              );
-            },
-          )
-        }),
-        body: SlotLayout(config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.smallAndUp: SlotLayout.from(
-            key: const Key('primary-body-small'),
-            builder: (context) => Center(
-              child: Text("pafe principale"),
-            ),
-          )
-        }),
-      ),
+      body: Container(color: Colors.green),
     );
   }
 
@@ -61,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
         context.go(AppRouter.HOME_PAGE_ROUTE);
         break;
       case 1:
-        context.go(AppRouter.PAGE1_ROUTE);
+        context.go(AppRouter.TENANTS_ROUTE);
         break;
       case 2:
-        context.go(AppRouter.PAGE2_ROUTE);
+        context.go(AppRouter.REALTY_ROUTE);
         break;
       default:
     }
