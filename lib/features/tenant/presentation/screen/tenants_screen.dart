@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rentworks/di.dart';
-import 'package:rentworks/features/tenant/domain/entities/tenant.dart';
-import 'package:rentworks/features/tenant/presentation/cubit/tenants_cubit.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:bloc/bloc.dart';
 
+import '../../../../di.dart';
+import '../../domain/entities/tenant.dart';
+import '../cubit/tenants_cubit.dart';
 import '../widget/tenant_card.dart';
 
 class TenantsScreen extends StatefulWidget {
@@ -15,6 +17,7 @@ class TenantsScreen extends StatefulWidget {
 
 class _TenantsScreenState extends State<TenantsScreen> {
   List<Tenant> tenants = [];
+
   @override
   void initState() {
     super.initState();
@@ -31,10 +34,36 @@ class _TenantsScreenState extends State<TenantsScreen> {
             loading: () => const Center(
               child: CircularProgressIndicator(),
             ),
-            loaded: (tenants) => ListView.builder(
-              itemCount: tenants.length,
-              itemBuilder: (context, index) {
-                return TenantCard(tenant: tenants[index]);
+            loaded: (tenants) => ResponsiveBuilder(
+              builder: (context, sizingInformation) {
+                if (sizingInformation.deviceScreenType ==
+                    DeviceScreenType.mobile) {
+                  // Mobile layout
+                  return ListView.builder(
+                    itemCount: tenants.length,
+                    itemBuilder: (context, index) {
+                      return TenantCard(tenant: tenants[index]);
+                    },
+                  );
+                } else {
+                  // Web layout
+                  return GridView.builder(
+                    padding: const EdgeInsets.all(10),
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 340,
+                      mainAxisExtent: 160,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                    ),
+                    itemCount: tenants.length,
+                    itemBuilder: (context, index) {
+                      return AspectRatio(
+                          aspectRatio: 3 / 2,
+                          child: TenantCard(tenant: tenants[index]));
+                    },
+                  );
+                }
               },
             ),
           ),

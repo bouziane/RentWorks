@@ -13,9 +13,6 @@ class TenantCard extends StatelessWidget {
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
     }
-    // else {
-    //   throw 'Could not launch $url';
-    // }
   }
 
   @override
@@ -26,52 +23,50 @@ class TenantCard extends StatelessWidget {
               await _launchURL('tel:+${tenant.phoneNumber}');
             }
           : null,
-      child: Container(
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 4,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.grey.shade200,
+                  radius: 30,
+                  child:
+                      Icon(Icons.person, size: 48, color: Colors.grey.shade500),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         tenant.name ?? '',
                         style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      if (tenant.active)
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8),
-                          child: Icon(Icons.check_circle,
-                              size: 16, color: Colors.green),
-                        ),
+                      const SizedBox(height: 6),
+                      Text('Email: ${tenant.email ?? ''}'),
+                      const SizedBox(height: 6),
+                      Text('Occupation: ${tenant.occupation ?? ''}'),
+                      const SizedBox(height: 6),
+                      Text('Phone: ${tenant.phoneNumber ?? ''}'),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(tenant.email ?? ''),
-                  const SizedBox(height: 4),
-                  Text(tenant.occupation ?? ''),
-                  const SizedBox(height: 4),
-                  Text(tenant.phoneNumber ?? ''),
-                ],
-              ),
+                ),
+                if (tenant.active)
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child:
+                        Icon(Icons.check_circle, size: 24, color: Colors.green),
+                  ),
+              ],
             ),
-            const Icon(Icons.chevron_right, size: 24),
-          ],
+          ),
         ),
       ),
     );
