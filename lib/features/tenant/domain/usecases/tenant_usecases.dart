@@ -11,6 +11,11 @@ class TenantUseCase {
     return tenantRepository.createTenant(param);
   }
 
+// Retrieve all tenants
+  Stream<List<Tenant>> retrieveAllTenants() {
+    return tenantRepository.getAllTenants();
+  }
+
   // Retrieve a tenant by their ID
   Future<Tenant> retrieveTenantById(String tenantId) {
     return tenantRepository.getTenantById(tenantId);

@@ -1,18 +1,20 @@
 import 'package:get_it/get_it.dart';
-import 'package:rentworks/config/supabase_config.dart';
-import 'package:rentworks/core/app_router.dart';
-import 'package:rentworks/features/realty/data/datasource/realty_datasource.dart';
-import 'package:rentworks/features/realty/data/repositories/realty_repository_impl.dart';
-import 'package:rentworks/features/realty/domain/repositories/realty_repository.dart';
-import 'package:rentworks/features/realty/domain/usecases/realty_usescase.dart';
-import 'package:rentworks/features/realty/presentation/realty/cubit/realty_cubit.dart';
-import 'package:rentworks/features/tenant/data/datasource/tenant_datasource.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'config/supabase_config.dart';
+import 'core/app_router.dart';
+import 'features/realty/data/datasource/realty_datasource.dart';
+import 'features/realty/data/repositories/realty_repository_impl.dart';
+import 'features/realty/domain/repositories/realty_repository.dart';
+import 'features/realty/domain/usecases/realty_usescase.dart';
+import 'features/realty/presentation/cubit/realty_cubit.dart';
+import 'features/tenant/data/datasource/tenant_datasource.dart';
 import 'features/tenant/data/repositories/tenant_repository_impl.dart';
 import 'features/tenant/domain/repositories/tenant_repository.dart';
 import 'features/tenant/domain/usecases/tenant_usecases.dart';
+import 'features/tenant/presentation/cubit/tenants_cubit.dart';
 
 final getIt = GetIt.instance;
 Future<void> init() async {
@@ -45,9 +47,10 @@ Future<void> init() async {
       () => RealtyRepositoryImpl(getIt()));
 
 // datasources
-  getIt.registerLazySingleton(() => TenantDataSource());
+  getIt.registerLazySingleton(() => TenantDataSource(getIt()));
   getIt.registerLazySingleton(() => RealtyDataSource(getIt()));
 
 //cubits
   getIt.registerLazySingleton(() => RealtyCubit(getIt()));
+  getIt.registerLazySingleton(() => TenantsCubit(getIt()));
 }

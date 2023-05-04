@@ -81,4 +81,12 @@ class MockTenantRepository extends _i1.Mock implements _i3.TenantRepository {
           ),
         )),
       ) as _i4.Future<_i2.Tenant>);
+  @override
+  _i4.Stream<List<_i2.Tenant>> getAllTenants() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllTenants,
+          [],
+        ),
+        returnValue: _i4.Stream<List<_i2.Tenant>>.empty(),
+      ) as _i4.Stream<List<_i2.Tenant>>);
 }

@@ -21,6 +21,11 @@ class TenantRepositoryImpl extends TenantRepository {
   }
 
   @override
+  Stream<List<Tenant>> getAllTenants() {
+    return tenantDataSource.getAllTenants();
+  }
+
+  @override
   Future<Tenant> getTenantById(String tenantId) {
     return tenantDataSource.getTenantById(tenantId);
   }

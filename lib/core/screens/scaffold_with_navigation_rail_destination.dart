@@ -39,7 +39,7 @@ class _ScaffoldWithNavigationRailDestinationState
             key: const Key("menu"),
             builder: (context) {
               return AdaptiveScaffold.standardNavigationRail(
-                // width: 90,
+                width: 90,
                 selectedIndex: _selectedIndex,
                 labelType: NavigationRailLabelType.selected,
                 onDestinationSelected: (index) {

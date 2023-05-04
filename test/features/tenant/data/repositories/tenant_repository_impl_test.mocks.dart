@@ -3,14 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:rentworks/features/tenant/data/datasource/tenant_datasource.dart'
-    as _i3;
-import 'package:rentworks/features/tenant/domain/entities/tenant.dart' as _i2;
+    as _i4;
+import 'package:rentworks/features/tenant/domain/entities/tenant.dart' as _i3;
 import 'package:rentworks/features/tenant/domain/usecases/params/tenant_param.dart'
-    as _i5;
+    as _i6;
+import 'package:supabase_flutter/supabase_flutter.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,8 +24,18 @@ import 'package:rentworks/features/tenant/domain/usecases/params/tenant_param.da
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeTenant_0 extends _i1.SmartFake implements _i2.Tenant {
-  _FakeTenant_0(
+class _FakeSupabase_0 extends _i1.SmartFake implements _i2.Supabase {
+  _FakeSupabase_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeTenant_1 extends _i1.SmartFake implements _i3.Tenant {
+  _FakeTenant_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -36,49 +47,73 @@ class _FakeTenant_0 extends _i1.SmartFake implements _i2.Tenant {
 /// A class which mocks [TenantDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTenantDataSource extends _i1.Mock implements _i3.TenantDataSource {
+class MockTenantDataSource extends _i1.Mock implements _i4.TenantDataSource {
   MockTenantDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<bool> createTenant(_i5.TenantParam? tenantParam) =>
+  _i2.Supabase get supabase => (super.noSuchMethod(
+        Invocation.getter(#supabase),
+        returnValue: _FakeSupabase_0(
+          this,
+          Invocation.getter(#supabase),
+        ),
+      ) as _i2.Supabase);
+  @override
+  set supabase(_i2.Supabase? _supabase) => super.noSuchMethod(
+        Invocation.setter(
+          #supabase,
+          _supabase,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i5.Future<bool> createTenant(_i6.TenantParam? tenantParam) =>
       (super.noSuchMethod(
         Invocation.method(
           #createTenant,
           [tenantParam],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
   @override
-  _i4.Future<bool> deleteTenant(String? tenantId) => (super.noSuchMethod(
+  _i5.Future<bool> deleteTenant(String? tenantId) => (super.noSuchMethod(
         Invocation.method(
           #deleteTenant,
           [tenantId],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
   @override
-  _i4.Future<_i2.Tenant> getTenantById(String? tenantId) => (super.noSuchMethod(
+  _i5.Future<_i3.Tenant> getTenantById(String? tenantId) => (super.noSuchMethod(
         Invocation.method(
           #getTenantById,
           [tenantId],
         ),
-        returnValue: _i4.Future<_i2.Tenant>.value(_FakeTenant_0(
+        returnValue: _i5.Future<_i3.Tenant>.value(_FakeTenant_1(
           this,
           Invocation.method(
             #getTenantById,
             [tenantId],
           ),
         )),
-      ) as _i4.Future<_i2.Tenant>);
+      ) as _i5.Future<_i3.Tenant>);
   @override
-  _i4.Future<bool> updateTenant(_i2.Tenant? updatedTenant) =>
+  _i5.Future<bool> updateTenant(_i3.Tenant? updatedTenant) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateTenant,
           [updatedTenant],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+  @override
+  _i5.Stream<List<_i3.Tenant>> getAllTenants() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllTenants,
+          [],
+        ),
+        returnValue: _i5.Stream<List<_i3.Tenant>>.empty(),
+      ) as _i5.Stream<List<_i3.Tenant>>);
 }

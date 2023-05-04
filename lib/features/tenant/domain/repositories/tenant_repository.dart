@@ -6,4 +6,5 @@ abstract class TenantRepository {
   Future<bool> deleteTenant(String tenantId);
   Future<bool> updateTenant(Tenant updatedTenant);
   Future<Tenant> getTenantById(String tenantId);
+  Stream<List<Tenant>> getAllTenants();
 }

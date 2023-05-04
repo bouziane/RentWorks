@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:rentworks/features/realty/domain/entities/realty.dart';
 import 'package:rentworks/features/realty/domain/usecases/params/realty_param.dart';
 
-import '../../../domain/usecases/realty_usescase.dart';
+import '../../domain/usecases/realty_usescase.dart';
 
 part 'realty_state.dart';
 

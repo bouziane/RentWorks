@@ -1,17 +1,16 @@
-class Tenant {
-  final bool active;
-  final String id;
-  final String email;
-  final String name;
-  final String occupation;
-  final String phoneNumber;
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'tenant.freezed.dart';
+part 'tenant.g.dart';
 
-  Tenant({
-    required this.active,
-    required this.email,
-    required this.id,
-    required this.name,
-    required this.occupation,
-    required this.phoneNumber,
-  });
+@Freezed()
+class Tenant with _$Tenant {
+  const factory Tenant({
+    @Default(false) bool active,
+    required String id,
+    String? email,
+    String? name,
+    String? occupation,
+    String? phoneNumber,
+  }) = _Tenant;
+  factory Tenant.fromJson(Map<String, dynamic> json) => _$TenantFromJson(json);
 }

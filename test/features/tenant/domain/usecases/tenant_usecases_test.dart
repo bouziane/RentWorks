@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rentworks/features/tenant/domain/entities/tenant.dart';
 import 'package:rentworks/features/tenant/domain/repositories/tenant_repository.dart';
@@ -48,6 +50,51 @@ void main() {
           .thenAnswer((realInvocation) => Future.value(true));
       final res = await tenantUseCase.createTenant(tenantParam);
       expect(res, true);
+    });
+
+    test('Retrieve All Realty ', () async {
+      final mockStreamController = StreamController<List<Tenant>>();
+      List<Tenant> expectedTenants = [
+        Tenant(
+          active: true,
+          email: 'john.doe@example.com',
+          id: '1',
+          name: 'John Doe',
+          occupation: 'Software Engineer',
+          phoneNumber: '555-1234',
+        ),
+        Tenant(
+          active: false,
+          email: 'jane.doe@example.com',
+          id: '2',
+          name: 'Jane Doe',
+          occupation: 'Designer',
+          phoneNumber: '555-5678',
+        ),
+        Tenant(
+          active: true,
+          email: 'bob.smith@example.com',
+          id: '3',
+          name: 'Bob Smith',
+          occupation: 'Manager',
+          phoneNumber: '555-9012',
+        ),
+      ];
+
+      when(mockTenantRepository.getAllTenants())
+          .thenAnswer((_) => Stream.value(expectedTenants));
+
+      // Act
+      final resultStream = mockTenantRepository.getAllTenants();
+
+      // Assert
+      expect(
+        resultStream,
+        emitsInOrder([
+          expectedTenants,
+          emitsDone,
+        ]),
+      );
     });
 
     test('Retrieve Tenant by ID', () async {
