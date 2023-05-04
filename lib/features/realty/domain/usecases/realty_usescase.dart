@@ -16,7 +16,7 @@ class RealtyUseCases {
   }
 
   // Retrieve all realty
-  Future<List<Realty>> retrieveAllRealty() {
+  Stream<List<Realty>> retrieveAllRealty() {
     return realtyRepository.getAllRealty();
   }
 

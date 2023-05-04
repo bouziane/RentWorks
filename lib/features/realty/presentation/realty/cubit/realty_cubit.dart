@@ -21,7 +21,12 @@ class RealtyCubit extends Cubit<RealtyState> {
   }
 
   getAllRealties() async {
-    List<Realty> allRealty = await realtyUseCases.retrieveAllRealty();
-    emit(RealtyLoaded(allRealty));
+    realtyUseCases.retrieveAllRealty().listen((event) {
+      if (event.isNotEmpty) {
+        emit(RealtyLoaded(event));
+      } else {
+        emit(RealtyError(message: "No elements found."));
+      }
+    });
   }
 }

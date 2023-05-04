@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rentworks/core/screens/home_screen.dart';
+import 'package:rentworks/features/realty/domain/entities/realty.dart';
 import 'package:rentworks/features/realty/presentation/screen/realty_screen.dart';
 import 'package:rentworks/features/tenant/presentation/screen/tenants_screen.dart';
 
@@ -20,6 +21,10 @@ class AppRouter {
   static const String TENANTS_ROUTE = "/tenants";
   static const String REALTY_NAME = "realty";
   static const String REALTY_ROUTE = "/realty";
+  static const String REALTY_DETAILS_NAME = "realty_details";
+  static const String REALTY_DETAILS_ROUTE = "/realty_details";
+  static const String TENANT_DETAILS_NAME = "tenants_details";
+  static const String TENANT_DETAILS_ROUTE = "/tenants_details";
 
   static GoRouter createRouter() {
     final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -64,7 +69,23 @@ class AppRouter {
           name: REALTY_NAME,
           path: REALTY_ROUTE,
           pageBuilder: (context, state) => createFadeTrasition(RealtyScreen()),
-        )
+        ),
+        // GoRoute(
+        //   name: REALTY_DETAILS_NAME,
+        //   path: REALTY_DETAILS_ROUTE,
+        //   pageBuilder: (context, state) {
+        //     Realty realty = (state.extra as Realty);
+        //     return createFadeTrasition(RealtyDetails(realty: realty));
+        //   },
+        // ),
+        // GoRoute(
+        //   name: TENANT_DETAILS_NAME,
+        //   path: TENANT_DETAILS_ROUTE,
+        //   pageBuilder: (context, state) {
+        //     Realty realty = (state.extra as Realty);
+        //     return createFadeTrasition(RealtyDetails(realty: realty));
+        //   },
+        // )
       ],
     ));
     // Login

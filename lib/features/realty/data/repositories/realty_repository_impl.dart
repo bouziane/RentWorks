@@ -28,7 +28,7 @@ class RealtyRepositoryImpl extends RealtyRepository {
   }
 
   @override
-  Future<List<Realty>> getAllRealty() {
+  Stream<List<Realty>> getAllRealty() {
     return realtyDataSource.getAllRealty();
   }
 

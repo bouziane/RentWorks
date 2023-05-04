@@ -6,6 +6,6 @@ abstract class RealtyRepository {
   Future<bool> createRealty(RealtyParam param);
   Future<bool> deleteRealty(String realtyId);
   Future<bool> updateRealty(Realty updatedRealty);
-  Future<List<Realty>> getAllRealty();
+  Stream<List<Realty>> getAllRealty();
   Future<Realty> getRealtyById(String realtyId);
 }

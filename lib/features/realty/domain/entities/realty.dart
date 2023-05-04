@@ -1,24 +1,20 @@
-class Realty {
-  final bool available;
-  final double price;
-  final List<String>? amenities;
-  final List<String>? photos;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final String? description;
-  final String id;
-  final String? location;
-  final String name;
-  final String owner;
+part 'realty.freezed.dart';
+part 'realty.g.dart';
 
-  Realty({
-    this.amenities,
-    required this.available,
-    this.description,
-    required this.id,
-    this.location,
-    required this.name,
-    required this.owner,
-    this.photos,
-    required this.price,
-  });
+@Freezed()
+class Realty with _$Realty {
+  const factory Realty({
+    @Default(false) bool available,
+    double? price,
+    List<String>? amenities,
+    List<String>? photos,
+    required String id,
+    String? description,
+    String? location,
+    String? name,
+    String? owner,
+  }) = _Realty;
+  factory Realty.fromJson(Map<String, dynamic> json) => _$RealtyFromJson(json);
 }

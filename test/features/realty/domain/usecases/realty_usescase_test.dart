@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -55,10 +57,38 @@ void main() {
     });
 
     test('Retrieve All Realty ', () async {
+      final mockStreamController = StreamController<List<Realty>>();
+      final expectedRealtyList = [
+        Realty(
+            id: '1',
+            name: 'Apartment A',
+            location: 'New York',
+            price: 1000.0,
+            available: false,
+            owner: "Mr Smith"),
+        Realty(
+            id: '2',
+            name: 'House B',
+            location: 'Los Angeles',
+            price: 2000.0,
+            available: true,
+            owner: "Ms Smith")
+      ];
+
       when(mockRealtyRepository.getAllRealty())
-          .thenAnswer((_) => Future.value([testRealty]));
-      final result = await realtyUseCases.retrieveAllRealty();
-      expect(result, isInstanceOf<List<Realty>>());
+          .thenAnswer((_) => Stream.value(expectedRealtyList));
+
+      // Act
+      final resultStream = mockRealtyRepository.getAllRealty();
+
+      // Assert
+      expect(
+        resultStream,
+        emitsInOrder([
+          expectedRealtyList,
+          emitsDone,
+        ]),
+      );
     });
 
     test('Retrieve Realty by ID', () async {

@@ -82,13 +82,13 @@ class MockRealtyRepository extends _i1.Mock implements _i3.RealtyRepository {
         returnValue: _i4.Future<bool>.value(false),
       ) as _i4.Future<bool>);
   @override
-  _i4.Future<List<_i2.Realty>> getAllRealty() => (super.noSuchMethod(
+  _i4.Stream<List<_i2.Realty>> getAllRealty() => (super.noSuchMethod(
         Invocation.method(
           #getAllRealty,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.Realty>>.value(<_i2.Realty>[]),
-      ) as _i4.Future<List<_i2.Realty>>);
+        returnValue: _i4.Stream<List<_i2.Realty>>.empty(),
+      ) as _i4.Stream<List<_i2.Realty>>);
   @override
   _i4.Future<_i2.Realty> getRealtyById(String? realtyId) => (super.noSuchMethod(
         Invocation.method(
